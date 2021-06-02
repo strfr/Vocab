@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Vocab</string>
+    <string name="vocab">Vocab</string>
+    <string name="start">Start Learning</string>
+    <string name="add_word">Add Word</string>
+    <string name="make_a_quiz">Make a Quiz</string>
+    <string name="word">Word</string>
+    <string name="next_word">NEXT WORD</string>
+    <string name="definition">Definition</string>
+    <string name="countable_a_single_unit_of_language_that_means_something_and_can_be_spoken_or_written">[countable] a single unit of language that means something and can be spoken or written</string>
+    <string name="example_sentence">Example Sentence</string>
+    <string name="do_not_write_more_than_200_words">Do not write more than 200 words.</string>
+    <string name="synonym_of_word">Synonym of word</string>
+    <string name="phrase">Phrase</string>
+    <string name="none">None</string>
+    <string name="noun">noun</string>
+    <string name="sow">Synonym of word</string>
+    <string name="aow">Antonym of word</string>
+    <string name="synonym">Synonym</string>
+    <string name="antonym">Antonym</string>
+    <string name="synonym_exists">Synonym Exists</string>
+    <string name="antonym_exists">Antonym Exists</string>
+    <string name="type_of_word">Type of Word</string>
+    <string name="done_memorized">Done/Memorized</string>
+    <string name="remind_me_later">Remind me later</string>
+    <string name="question">Question</string>
+</resources>

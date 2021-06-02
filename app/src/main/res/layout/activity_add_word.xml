@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddWordActivity">
+
+    <EditText
+        android:id="@+id/et_word"
+        android:layout_width="245dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:hint="@string/word"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_definition"
+        android:layout_width="245dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/definition"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/et_example_sentence"
+        app:layout_constraintTop_toBottomOf="@+id/et_type" />
+
+    <EditText
+        android:id="@+id/et_synonym"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/synonym"
+        app:layout_constraintStart_toEndOf="@+id/cb_is_synonym_exists"
+        app:layout_constraintTop_toBottomOf="@+id/et_example_sentence" />
+
+    <EditText
+        android:id="@+id/et_antonym"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/antonym"
+        app:layout_constraintStart_toEndOf="@+id/cb_is_antonym_exists"
+        app:layout_constraintTop_toBottomOf="@+id/et_synonym" />
+
+    <CheckBox
+        android:id="@+id/cb_is_synonym_exists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/synonym_exists"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_example_sentence" />
+
+    <CheckBox
+        android:id="@+id/cb_is_antonym_exists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:hint="@string/antonym_exists"
+        app:layout_constraintStart_toStartOf="@+id/cb_is_synonym_exists"
+        app:layout_constraintTop_toBottomOf="@+id/cb_is_synonym_exists" />
+
+    <EditText
+        android:id="@+id/et_example_sentence"
+        android:layout_width="245dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/example_sentence"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/cb_is_synonym_exists"
+        app:layout_constraintTop_toBottomOf="@+id/et_definition" />
+
+    <Button
+        android:id="@+id/add_word_ac_btn"
+        android:layout_width="208dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/add_word"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_antonym" />
+
+    <EditText
+        android:id="@+id/et_type"
+        android:layout_width="245dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/type_of_word"
+        app:layout_constraintStart_toStartOf="@+id/et_word"
+        app:layout_constraintTop_toBottomOf="@+id/et_word" />
+</androidx.constraintlayout.widget.ConstraintLayout>
