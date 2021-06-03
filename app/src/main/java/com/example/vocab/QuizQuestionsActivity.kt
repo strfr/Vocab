@@ -28,7 +28,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_quiz_questions)
-        mQuestionsList = Constants.getQuestions()
+        mQuestionsList = Constants.getQuestions(this)
 
         setQuestion()
 

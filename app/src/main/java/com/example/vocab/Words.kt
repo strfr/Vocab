@@ -1,3 +1,14 @@
 package com.example.vocab
 
-data class Words(val word:String, val type: String, val definition: String, val example_sentence: String, val isSynonymExists: Boolean, val Synonym: String, val isAntonymExists: Boolean, val Antonym: String)
+data class Words(
+    var id:Int,
+    var word: String,
+    var type: String,
+    var definition: String,
+    var example_sentence: String,
+    val isSynonymExists: Int,
+    val Synonym: String,
+    val isAntonymExists: Int,
+    val Antonym: String,
+    var isUserAdded: Int
+)

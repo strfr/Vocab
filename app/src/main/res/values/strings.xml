@@ -24,4 +24,5 @@
     <string name="done_memorized">Done/Memorized</string>
     <string name="remind_me_later">Remind me later</string>
     <string name="question">Question</string>
+    <string name="add_to_my_words">Add to my words</string>
 </resources>

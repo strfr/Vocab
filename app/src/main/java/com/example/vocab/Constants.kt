@@ -1,5 +1,6 @@
 package com.example.vocab
 
+import android.content.Context
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -43,11 +44,12 @@ object Constants {
         )
     }
 
-    fun getQuestions(): ArrayList<Question> {
+    fun getQuestions(context: Context): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
-        val words = getWords()
+        val dbHelper = DBHelper(context)
+        val words = dbHelper.readData()
         for (i in 1..10) {
-            val index = getRandomNumber()
+            var index = getRandomNumber()
             val op1 = getRandomNumber()
             val op2 = getRandomNumber()
             val op3 = getRandomNumber()
@@ -70,288 +72,285 @@ object Constants {
         val words = ArrayList<Words>()
         words.let {
             it.add(
-                Words(
+                Words( 0,
                     "word",
                     "noun",
                     "[countable] a single unit of language that means something and can be spoken or written",
                     "Do not write more than 200 words.",
-                    true,
+                    1,
                     "phrase",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "ability",
                     "noun",
                     "[singular] ability to do something the fact that somebody/something is able to do something",
                     "People with the disease may lose their ability to communicate.",
-                    true,
+                    1,
                     "capability",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "baby", "noun", "a very young child or animal",
-                    "The baby's crying!", true, "newborn", false, ""
-                )
+                    "The baby's crying!", 1, "newborn", 0, ""
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "cable",
                     "noun",
                     "[countable, uncountable] a set of wires, covered in plastic or rubber, that carries electricity, phone signals, etc.",
                     "Connect the cable to the correct terminal.",
-                    true,
+                    1,
                     "cord",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "damage",
                     "noun",
                     " [uncountable] physical harm caused to something which makes it less attractive, useful or valuable",
                     "The building suffered extensive damage by fire in 1925.",
-                    true,
+                    1,
                     "harm",
-                    true,
+                    1,
                     "benefit"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "earth",
                     "noun",
                     "[uncountable, singular] the world; the planet that we live on",
                     "The earth revolves around the sun.",
-                    true,
+                    1,
                     "world",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "facility",
                     "noun",
                     " [plural] buildings, services, equipment, etc. that are provided for a particular purpose",
                     "The school is upgrading its outdoor play facilities.",
-                    true,
+                    1,
                     "amenity",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "gang", "noun", "an organized group of criminals",
-                    "A four-man gang carried out the robbery.", true, "bunch", false, ""
-                )
+                    "A four-man gang carried out the robbery.", 1, "bunch", 0, ""
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "habit",
                     "noun",
                     "[countable] a thing that you do often and almost without thinking, especially something that is hard to stop doing",
                     "Most of us have some undesirable habits.",
-                    true,
+                    1,
                     "tendency",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "idea",
                     "noun",
                     "[countable] a plan, thought or suggestion, especially about what to do in a particular situation",
                     "That's a great idea!",
-                    true,
+                    1,
                     "plan",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
-
-
             it.add(
-                Words(
+                Words( 0,
                     "abandon",
                     "verb",
                     "cease to support or look after (someone); desert.",
                     "her natural mother had abandoned her at an early age.",
-                    true,
+                    1,
                     "leave",
-                    true,
+                    1,
                     "keep"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "bait",
                     "verb",
                     "to prepare (a hook or trap) with bait.",
                     "her natural mother had abandoned her at an early age.",
-                    true,
+                    1,
                     "heckle",
-                    false,
+                    0,
                     ""
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "climb",
                     "verb",
                     "to go up or ascend, especially by using the hands and feet or feet only",
                     "to climb up a ladder.",
-                    true,
+                    1,
                     "ascend",
-                    true,
+                    1,
                     "descend"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "dig",
                     "verb",
                     "to break up, turn over, or remove earth, sand, etc., as with a shovel, spade, bulldozer, or claw; make an excavation.",
                     "the boar had been digging for roots",
-                    true,
+                    1,
                     "cultivate",
-                    true,
+                    1,
                     "compliment"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "enrich",
                     "verb",
                     "to supply with riches, wealth, abundant or valuable possessions, etc.:",
                     "Commerce enriches a nation.",
-                    true,
+                    1,
                     "elevate",
-                    true,
+                    1,
                     "decrease"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "feed", "verb", "to give food to; supply with nourishment:",
-                    "to feed a child.", true, "nourish", true, "starve"
-                )
+                    "to feed a child.", 1, "nourish", 1, "starve"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "eat",
                     "verb",
                     "to take into the mouth and swallow for nourishment; chew and swallow (food).",
                     "We'll eat at six o'clock.",
-                    true,
+                    1,
                     "bite",
-                    true,
+                    1,
                     "abstain"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "gain",
                     "verb",
                     "to get (something desired), especially as a result of one's efforts",
                     "to gain possession of an object; to gain permission to enter a country.",
-                    true,
+                    1,
                     "procure",
-                    true,
+                    1,
                     "lose"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "heal",
                     "verb",
                     "to make healthy, whole, or sound; restore to health; free from ailment.",
                     "They tried to heal the rift between them but were unsuccessful.",
-                    true,
+                    1,
                     "compose",
-                    true,
+                    1,
                     "irritate"
-                )
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "jam",
                     "verb",
                     "to press, squeeze, or wedge tightly between bodies or surfaces, so that motion or extrication is made difficult or impossible:",
                     "The ship was jammed between two rocks.",
-                    true,
+                    1,
                     "bind",
-                    true,
+                    1,
                     "boon"
-                )
+                ,0)
             )
-
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
-                )
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "nearly", "adverb", "all but; almost:",
-                    "nearly dead with cold.", true, "closely", false, ""
-                )
+                    "nearly dead with cold.", 1, "closely", 0, ""
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "fortunately ", "adverb", "by good fortune or luck",
-                    "Fortunately, no one was hurt.", true, "luckily", true, "unfortunately"
-                )
+                    "Fortunately, no one was hurt.", 1, "luckily", 1, "unfortunately"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
-                )
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
-                )
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
-                )
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
-                )
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
-                )
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
-                )
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly"
+                ,0)
             )
             it.add(
-                Words(
+                Words( 0,
                     "easily", "adverb", "in an easy manner; with ease; without trouble:",
-                    "The traffic moved along easily.", true, "certainly", true, "hardly"
+                    "The traffic moved along easily.", 1, "certainly", 1, "hardly",0
                 )
             )
         }
