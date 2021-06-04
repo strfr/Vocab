@@ -1,6 +1,11 @@
 package com.example.vocab
 
+import android.app.*
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +14,8 @@ import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,7 +23,8 @@ class MainActivity : AppCompatActivity() {
         var words = ArrayList<Words>()
         var dbHelper = DBHelper(this)
         Log.e("datasize", dbHelper.getDataSize().toString())
-       if(dbHelper.getDataSize()<29){
+        startService(Intent(this, NotificationService::class.java))
+        if(dbHelper.getDataSize()<29){
         words =Constants.getWords()
 
         for (item in words){
@@ -29,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             for(item in dbwords){
             Log.e("asd",item.toString())
             }
+
         }
         startLearningButton.setOnClickListener{
             val startLearningIntent = Intent(this,StartLearningActivity::class.java)
@@ -40,9 +49,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(addWordIntent)
         }
         makeQuizButton.setOnClickListener{
-            val makeQuizIntent = Intent(this,QuizQuestionsActivity::class.java)
+            val makeQuizIntent = Intent(this,QuizSelectActivity::class.java)
             startActivity(makeQuizIntent)
             finish()
         }
+
     }
 }

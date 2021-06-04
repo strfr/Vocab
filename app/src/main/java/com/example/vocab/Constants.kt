@@ -1,6 +1,7 @@
 package com.example.vocab
 
 import android.content.Context
+import android.util.Log
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -44,12 +45,17 @@ object Constants {
         )
     }
 
-    fun getQuestions(context: Context): ArrayList<Question> {
+    fun getQuestions(context: Context, selected: String?): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
         val dbHelper = DBHelper(context)
         val words = dbHelper.readData()
         for (i in 1..10) {
             var index = getRandomNumber()
+            if (selected != null) {
+                Log.e("sda",selected)
+            }
+            while (words[index].type!=selected)
+                index = getRandomNumber()
             val op1 = getRandomNumber()
             val op2 = getRandomNumber()
             val op3 = getRandomNumber()

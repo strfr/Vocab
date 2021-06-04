@@ -4,9 +4,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
@@ -24,11 +24,16 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
      * This function is auto created by Android when the Activity Class is created.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+        val selected = intent.getStringExtra("selected_item")
+
+        if (selected != null) {
+            Log.e("se",selected)
+        }
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_quiz_questions)
-        mQuestionsList = Constants.getQuestions(this)
+        mQuestionsList = Constants.getQuestions(this,selected)
 
         setQuestion()
 

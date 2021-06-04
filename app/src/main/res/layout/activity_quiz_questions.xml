@@ -59,7 +59,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple" />
+            tools:text="Op1" />
 
         <TextView
             android:id="@+id/tv_option_two"
@@ -74,7 +74,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Google" />
+            tools:text="Op2" />
 
         <TextView
             android:id="@+id/tv_option_three"
@@ -89,7 +89,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Android Inc." />
+            tools:text="Op3" />
 
         <TextView
             android:id="@+id/tv_option_four"
@@ -104,7 +104,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Nokia" />
+            tools:text="Op4" />
         <Button
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"

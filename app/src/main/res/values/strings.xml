@@ -25,4 +25,12 @@
     <string name="remind_me_later">Remind me later</string>
     <string name="question">Question</string>
     <string name="add_to_my_words">Add to my words</string>
+    <string name="start_quiz">start quiz</string>
+    <string-array name="types_array">
+        <item>noun</item>
+        <item>verb</item>
+        <item>adverb</item>
+        <item>adjectives</item>
+        <item>phrases and idioms</item>
+    </string-array>
 </resources>
