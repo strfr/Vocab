@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 
 class DBHelper(val context: Context) :
@@ -104,28 +105,6 @@ class DBHelper(val context: Context) :
         sqliteDB.delete(TABLE_NAME, null, null)
         sqliteDB.close()
 
-    }
-
-    fun updateAge(age: Int) {
-        val db = this.writableDatabase
-        val query = "SELECT * FROM $TABLE_NAME"
-        val result = db.rawQuery(query, null)
-        if (result.moveToFirst()) {
-            do {
-                val cv = ContentValues()
-                cv.put(COL_DEFINITION, (result.getInt(result.getColumnIndex(COL_DEFINITION)) + age))
-                db.update(
-                    TABLE_NAME, cv, "$COL_ID=? AND $COL_WORD=?",
-                    arrayOf(
-                        result.getString(result.getColumnIndex(COL_ID)),
-                        result.getString(result.getColumnIndex(COL_WORD))
-                    )
-                )
-            } while (result.moveToNext())
-        }
-
-        result.close()
-        db.close()
     }
 
 }

@@ -26,11 +26,12 @@
     <string name="question">Question</string>
     <string name="add_to_my_words">Add to my words</string>
     <string name="start_quiz">start quiz</string>
+    <string name="congratulations">Congratulations!</string>
     <string-array name="types_array">
         <item>noun</item>
         <item>verb</item>
         <item>adverb</item>
         <item>adjectives</item>
-        <item>phrases and idioms</item>
+        <item>Phrases and Idioms</item>
     </string-array>
 </resources>

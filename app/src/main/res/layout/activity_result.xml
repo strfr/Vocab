@@ -24,16 +24,15 @@
     <ImageView
         android:id="@+id/iv_trophy"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="image"
-        android:src="@drawable/trophy" />
+        android:layout_height="368dp"
+        android:src="@drawable/congrats" />
 
     <TextView
         android:id="@+id/tv_congratulations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Hey, Congratulations!"
+        android:text="@string/congratulations"
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold"/>

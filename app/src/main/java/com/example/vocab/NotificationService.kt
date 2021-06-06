@@ -1,5 +1,4 @@
 package com.example.vocab
-import android.R.attr.key
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -22,7 +21,7 @@ import java.util.*
         var timer: Timer? = null
         var timerTask: TimerTask? = null
         var TAG = "Timers"
-        var Your_X_SECS: Long = 8000000
+        var Your_X_SECS: Long = 36000000
 
         override fun onBind(arg0: Intent?): IBinder? {
             return null
@@ -31,8 +30,6 @@ import java.util.*
         override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
             Log.e(TAG, "onStartCommand")
             super.onStartCommand(intent, flags, startId)
-            val word = intent?.extras?.getString("word")
-
                 startTimer()
 
 
@@ -41,7 +38,6 @@ import java.util.*
         }
 
         override fun onCreate() {
-            //Log.e(TAG, "onCreate")
         }
 
         override fun onDestroy() {
@@ -50,14 +46,12 @@ import java.util.*
             super.onDestroy()
         }
 
-        //we are going to use a handler to be able to run in our TimerTask
         val handler: Handler = Handler()
 
         private fun startTimer() {
             timer = Timer()
             initializeTimerTask()
-            timer!!.schedule(timerTask, 1000, Your_X_SECS) //
-
+            timer!!.schedule(timerTask, 3600000, Your_X_SECS)
         }
 
         private fun stopTimerTask() {
@@ -76,12 +70,15 @@ import java.util.*
         }
 
         private fun createNotification() {
+            val intentRemind = Intent(applicationContext, NotificationActivity::class.java)
+            val intentTransitionRemind = PendingIntent.getActivity(this,1,intentRemind, PendingIntent.FLAG_UPDATE_CURRENT)
 
             val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             val mBuilder = NotificationCompat.Builder(applicationContext, default_notification_channel_id)
-            mBuilder.setContentTitle("asds")
-            mBuilder.setContentText("Hey! You Should See This Word.")
+            mBuilder.setContentTitle("Are you remembering these?")
+            mBuilder.setContentText("Words are waiting! Check it out!")
             mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
+            mBuilder.addAction(R.drawable.ic_launcher_foreground, "Show Me!", intentTransitionRemind)
             mBuilder.setAutoCancel(true)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val importance = NotificationManager.IMPORTANCE_HIGH

@@ -23,21 +23,22 @@ class MainActivity : AppCompatActivity() {
         var words = ArrayList<Words>()
         var dbHelper = DBHelper(this)
         Log.e("datasize", dbHelper.getDataSize().toString())
-        startService(Intent(this, NotificationService::class.java))
+
         if(dbHelper.getDataSize()<29){
         words =Constants.getWords()
 
         for (item in words){
             dbHelper.insertData(item)
         }}
-        deneme.setOnClickListener{
-            val dbwords=dbHelper.readData()
-
-            Log.e("datasize", dbHelper.getDataSize().toString())
-            for(item in dbwords){
-            Log.e("asd",item.toString())
-            }
-
+        words = dbHelper.readData() as ArrayList<Words>
+        var counter=0
+        for (item in words) {
+            if (item.isUserAdded == 1)
+                counter++
+            Log.e("dasd",counter.toString())
+        }
+        if (counter != 0) {
+            startService(Intent(this, NotificationService::class.java))
         }
         startLearningButton.setOnClickListener{
             val startLearningIntent = Intent(this,StartLearningActivity::class.java)

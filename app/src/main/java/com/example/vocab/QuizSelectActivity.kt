@@ -29,10 +29,10 @@ class QuizSelectActivity : AppCompatActivity() {
                                         view: View, position: Int, id: Long) {
                selected= types[position]
                 Log.e("sd",selected)
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
             }
         }
         btn_start_quiz.setOnClickListener{

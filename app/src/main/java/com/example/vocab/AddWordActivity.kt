@@ -8,8 +8,6 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_word.*
 
 class AddWordActivity : AppCompatActivity() {
-    private val LIST_KEY: String? = "list_key100"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_word)
@@ -26,7 +24,6 @@ class AddWordActivity : AppCompatActivity() {
                 else
                     synonymExists = 0
             val dbHelper = DBHelper(this)
-                    Log.e("aaaa","dasd")
                     dbHelper.insertData(
                     Words(
                         0,

@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.activity_start_learning.*
 class StartLearningActivity : AppCompatActivity() {
     var words = ArrayList<Words>()
     var randomNumber = 0
+
     private fun init() {
-        dbHelper = DBHelper(this)
 
         words = dbHelper.readData() as ArrayList<Words>
     }
@@ -35,7 +35,7 @@ class StartLearningActivity : AppCompatActivity() {
     }
 
     private fun makeWordCard() {
-        randomNumber = (0..20).random() // generated random from 0 to 10 included
+        randomNumber = (0..49).random() // generated random from 0 to 10 included
         if (words[randomNumber].isUserAdded == 0) {
             val tvWord = findViewById<TextView>(R.id.tv_word)
             tvWord.text = words[randomNumber].word

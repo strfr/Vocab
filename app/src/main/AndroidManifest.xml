@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vocab">
-
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vocab">
-        <activity android:name=".QuizSelectActivity"></activity>
-        <activity android:name=".NotificationActivity" />
+        <activity
+            android:name=".NotificationActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"> </activity>
+        <activity android:name=".QuizSelectActivity" />
         <activity android:name=".ResultActivity" />
         <activity android:name=".QuizQuestionsActivity" />
         <activity android:name=".AddWordActivity" />
@@ -25,7 +29,13 @@
 
         <service
             android:name=".NotificationService"
-            android:label="NotificationService" />
+            android:label="NotificationService"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+            <intent-filter>
+            <action android:name="com.example.vocab.NotificationService" />
+
+            <category android:name="android.intent.category.DEFAULT" /></intent-filter>
+        </service>
     </application>
 
 </manifest>

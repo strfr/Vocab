@@ -1,89 +1,84 @@
 package com.example.vocab
 
-import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_notification.*
-
+import java.util.concurrent.ExecutionException
 
 class NotificationActivity : AppCompatActivity() {
-    /*private val CHANNEL_1_ID = "channel1"
-    private var notificationManager: NotificationManagerCompat? = null*/
-
+    var words = ArrayList<Words>()
+    var randomNumber = 0
+    var dbHelper = DBHelper(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
-        val word: String? = intent.getStringExtra("word")
-        val status: String? = intent.getStringExtra("status")
-        Log.e("qwe", word.toString())
-        Log.e("asd", status.toString())
-        startService(Intent(this, NotificationService::class.java))
 
-            val intent = Intent(this@NotificationActivity, MainActivity::class.java)
-            overridePendingTransition(0, 0)
-            startActivity(intent)
+        words = dbHelper.readData() as ArrayList<Words>
+        Log.e("size", words.size.toString())
+        makeWordCard()
 
+        btn_memorized.setOnClickListener {
+            dbHelper.deleteAllData()
+            words[randomNumber].isUserAdded = 0
+            for (item in words) {
+                dbHelper.insertData(item)
+            }
+            makeWordCard()
         }
-
-
-        /*notificationManager = NotificationManagerCompat.from(this);
-        createNotificationChannels()
-
-        testButton.setOnClickListener {
-            //sendOnChannel1()
-            val intent = Intent(this, NotificationActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-            val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-
-
-            // button
-            val broadcastIntent = Intent(this, NotificationReceiver::class.java)
-            broadcastIntent.putExtra("toastMessage", message)
-            // button
-            val actionIntent = PendingIntent.getBroadcast(
-                this,
-                0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-            val intentt = Intent(this@NotificationActivity, NotificationActivity::class.java)
-            intentt.putExtra("qwe",title)
-            val word = "merhaba"
-            intentt.putExtra("word",word)
-            val intentTransition = PendingIntent.getActivity(this,0,intentt, PendingIntent.FLAG_UPDATE_CURRENT)
-
-            val builder = NotificationCompat.Builder(this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_baseline_article_24)
-                .setContentTitle("My notification")
-                .setContentText("Hello World!")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                // Set the intent that will fire when the user taps the notification
-                .addAction(R.drawable.ic_baseline_article_24, "Memorized", intentTransition)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-
-            with(NotificationManagerCompat.from(this)) {
-                // notificationId is a unique int for each notification that you must define
-                notify(1, builder.build())
-            }
-        }*/
+        btn_remind.setOnClickListener {
+            makeWordCard()
+        }
     }
 
-    /*private fun createNotificationChannels() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel1 = NotificationChannel(
-                CHANNEL_1_ID,
-                "Channel 1",
-                NotificationManager.IMPORTANCE_LOW
-            )
-            channel1.description = "This is Channel 1"
-
-            val manager = getSystemService(
-                NotificationManager::class.java
-            )
-            manager.createNotificationChannel(channel1)
+    private fun makeWordCard() {
+        words = dbHelper.readData() as ArrayList<Words>
+//        while(words[randomNumber].isUserAdded!=1)
+//            randomNumber = (0..30).random()
+        // generated random from 0 to 10 included
+        var counter = 0
+        for (item in words) {
+            if (item.isUserAdded == 1)
+                counter++
         }
-    }*/
+        if (counter == 0) {
+            Toast.makeText(this, "No more words!", Toast.LENGTH_LONG).show()
+            finish()
+        } else {
+            randomNumber = (0 until words.size).random()
+            if (words[randomNumber].isUserAdded == 1) {
+                val tvWord = findViewById<TextView>(R.id.tv_word_quiz)
+                tvWord.text = words[randomNumber].word
+                val tvType = findViewById<TextView>(R.id.tv_type_text_quiz)
+                tvType.text = words[randomNumber].type
+                val tvDefinition = findViewById<TextView>(R.id.tv_definition_text_quiz)
+                tvDefinition.text = words[randomNumber].definition
+                val tvExample = findViewById<TextView>(R.id.tv_example_text_quiz)
+                tvExample.text = words[randomNumber].example_sentence
+                val tvSynonymLabel = findViewById<TextView>(R.id.tv_synonym_label_quiz)
+                val tvSynonymText = findViewById<TextView>(R.id.tv_synonym_text_quiz)
+                if (words[randomNumber].isSynonymExists == 1) {
+                    tvSynonymLabel.text = getString(R.string.sow)
+                    tvSynonymText.text = words[randomNumber].Synonym
+                } else {
+                    tvSynonymLabel.text = ""
+                    tvSynonymText.text = ""
+                }
+                val tvAntonymLabel = findViewById<TextView>(R.id.tv_antonym_label_quiz)
+                val tvAntonymText = findViewById<TextView>(R.id.tv_antonym_text_quiz)
+                if (words[randomNumber].isAntonymExists == 1) {
+                    tvAntonymLabel.text = getString(R.string.aow)
+                    tvAntonymText.text = words[randomNumber].Antonym
+                } else {
+                    tvAntonymLabel.text = ""
+                    tvAntonymText.text = ""
+                }
+            } else
+                makeWordCard()
+        }
+
+
+    }
+}

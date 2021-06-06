@@ -20,20 +20,15 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mSelectedOptionPosition: Int = 0
 
-    /**
-     * This function is auto created by Android when the Activity Class is created.
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         val selected = intent.getStringExtra("selected_item")
 
         if (selected != null) {
-            Log.e("se",selected)
+            Log.e("se", selected)
         }
-        //This call the parent constructor
         super.onCreate(savedInstanceState)
-        // This is used to align the xml view to this class
         setContentView(R.layout.activity_quiz_questions)
-        mQuestionsList = Constants.getQuestions(this,selected)
+        mQuestionsList = Constants.getQuestions(this, selected)
 
         setQuestion()
 
@@ -41,11 +36,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_two.setOnClickListener(this)
         tv_option_three.setOnClickListener(this)
         tv_option_four.setOnClickListener(this)
-
-        // TODO(STEP 1: Adding a click event for submit button.)
-        // START
         btn_submit.setOnClickListener(this)
-        // END
     }
 
     override fun onClick(v: View?) {
@@ -71,9 +62,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
                 selectedOptionView(tv_option_four, 4)
             }
-
-            // TODO(STEP 2: Adding a click event for submit button. And change the questions and check the selected answers.)
-            // START
             R.id.btn_submit -> {
 
                 if (mSelectedOptionPosition == 0) {
@@ -96,16 +84,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 } else {
                     val question = mQuestionsList?.get(mCurrentPosition - 1)
-
-                    // This is to check if the answer is wrong
                     if (question!!.correctAnswer != mSelectedOptionPosition) {
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
-                    }
-                    else{
+                    } else {
                         mCorrectAnswers++
                     }
-
-                    // This is for correct answer
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
 
                     if (mCurrentPosition == mQuestionsList!!.size) {
@@ -120,24 +103,17 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    /**
-     * A function for setting the question to UI components.
-     */
     private fun setQuestion() {
 
-        val question = mQuestionsList!!.get(mCurrentPosition - 1) // Getting the question from the list with the help of current position.
+        val question =
+            mQuestionsList!!.get(mCurrentPosition - 1) // Getting the question from the list with the help of current position.
 
         defaultOptionsView()
-
-        // TODO (STEP 6: Check here if the position of question is last then change the text of the button.)
-        // START
         if (mCurrentPosition == mQuestionsList!!.size) {
             btn_submit.text = "FINISH"
         } else {
             btn_submit.text = "SUBMIT"
         }
-        // END
-
         progressBar.progress = mCurrentPosition
         tv_progress.text = "$mCurrentPosition" + "/" + progressBar.getMax()
 
@@ -148,9 +124,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_four.text = question.optionFour
     }
 
-    /**
-     * A function to set the view of selected option view.
-     */
     private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
 
         defaultOptionsView()
@@ -167,9 +140,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         )
     }
 
-    /**
-     * A function to set default options view when the new question is loaded or when the answer is reselected.
-     */
     private fun defaultOptionsView() {
 
         val options = ArrayList<TextView>()
@@ -188,11 +158,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    // TODO (STEP 3: Create a function for answer view.)
-    // START
-    /**
-     * A function for answer view which is used to highlight the answer is wrong or right.
-     */
     private fun answerView(answer: Int, drawableView: Int) {
 
         when (answer) {
@@ -223,5 +188,4 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-    // END
 }
